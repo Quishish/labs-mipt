@@ -24,13 +24,13 @@ std::vector<double> generateRandomArray(int n, double lowerBound, double upperBo
 
 int main()
 {
-    int sizes[] = {1000, 5000, 10000, 15000, 25000, 50000, 75000, 100000, 150000, 250000, 400000, 500000};
+    int sizes[] = {1000, 5000, 10000, 15000, 25000, 50000, 75000, 100000, 150000, 250000};
     auto filename = "0.csv";
 
     ofstream f(filename, ios::out); // csv - стандартный формат для хранения данных прямым текстом.
      // работаете как с привычным cout
 
-    for (int i = 0; i < 12; i++) {
+    for (int i = 0; i < 10; i++) {
         int size = sizes[i];
 
         auto arr0 = generateRandomArray(size, -10000, 10000);
@@ -48,7 +48,7 @@ int main()
         auto end12 = std::chrono::high_resolution_clock::now();
         auto nsec = end12 - start;
 
-        std::cout << "bubblesort " << size << " " << nsec.count() << " нсек." << std::endl;
+        std::cout << "bubblesort " << size << " " << nsec.count() << " nsec." << std::endl;
         f << "bubblesort;" << size << ";" << nsec.count() << endl;
 
         auto arr1 = generateRandomArray(size, -10000, 10000);
@@ -64,7 +64,7 @@ int main()
         // здесь то что вы хотите измерить
         auto end1 = std::chrono::high_resolution_clock::now();
         auto nsec1 = end1 - start1;
-        std::cout << "insertions " << size << " " << nsec1.count() << " нсек." << std::endl;
+        std::cout << "insertions " << size << " " << nsec1.count() << " nsec." << std::endl;
         f << "insertions;" << size << ";" << nsec1.count() << endl;
 
         auto arr2 = generateRandomArray(size, -10000, 10000);
@@ -98,7 +98,7 @@ int main()
         auto end2 = std::chrono::high_resolution_clock::now();
         auto nsec2 = end2 - start2;
 
-        std::cout << "selectionsort " << size << " " << nsec2.count() << " нсек." << std::endl;
+        std::cout << "selectionsort " << size << " " << nsec2.count() << " nsec." << std::endl;
         f << "selectionsort;" << size << ";" << nsec2.count() << endl;
 
 

@@ -36,13 +36,14 @@ int main()
         auto arr0 = generateRandomArray(size, -10000, 10000);
         auto start = std::chrono::high_resolution_clock::now();
 
-        for (auto i = 0; i < size; i++)
+        for (auto i = 0; i < size; i++) {
             for (auto j = 0; j < size - 1; j++)
                 if (arr0[j]>arr0[j + 1]) {
                     int tmp = arr0[j];
                     arr0[j] = arr0[j + 1];
                     arr0[j + 1] = tmp;
-                }
+            }
+        }
 
         // здесь то что вы хотите измерить
         auto end12 = std::chrono::high_resolution_clock::now();
@@ -51,13 +52,11 @@ int main()
         std::cout << "bubblesort " << size << " " << nsec.count() << " nsec." << std::endl;
         f << "bubblesort;" << size << ";" << nsec.count() << endl;
 
-        auto arr1 = generateRandomArray(size, -10000, 10000);
-
         auto start1 = std::chrono::high_resolution_clock::now();
 
         for (auto i = 0; i < size; i++) {
-            for (auto j = i; (j > 0) && (arr1[j] > arr1[j - 1]); j--) {
-                std::swap(arr1[j], arr1[j - 1]);
+            for (auto j = i; (j > 0) && (arr0[j] > arr0[j - 1]); j--) {
+                std::swap(arr0[j], arr0[j - 1]);
             }
         }
 
@@ -67,7 +66,6 @@ int main()
         std::cout << "insertions " << size << " " << nsec1.count() << " nsec." << std::endl;
         f << "insertions;" << size << ";" << nsec1.count() << endl;
 
-        auto arr2 = generateRandomArray(size, -10000, 10000);
         auto start2 = std::chrono::high_resolution_clock::now();
 
         int n = size;
@@ -81,7 +79,7 @@ int main()
             // Iterate through the unsorted portion
             // to find the actual minimum
             for (int j = i + 1; j < n; ++j) {
-                if (arr2[j] < arr2[min_idx]) {
+                if (arr0[j] < arr0[min_idx]) {
 
                     // Update min_idx if a smaller
                     // element is found
@@ -91,7 +89,7 @@ int main()
 
             // Move minimum element to its
             // correct position
-            swap(arr2[i], arr2[min_idx]);
+            swap(arr0[i], arr0[min_idx]);
         }
 
         // здесь то что вы хотите измерить

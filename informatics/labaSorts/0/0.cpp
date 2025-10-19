@@ -55,10 +55,11 @@ int main()
         auto start1 = std::chrono::high_resolution_clock::now();
 
         for (auto i = 0; i < size; i++) {
-            for (auto j = i; (j > 0) && (arr0[j] > arr0[j - 1]); j--) {
+            for (auto j = i; (j > 0) && (arr0[j] < arr0[j - 1]); j--) {
                 std::swap(arr0[j], arr0[j - 1]);
             }
         }
+
 
         // здесь то что вы хотите измерить
         auto end1 = std::chrono::high_resolution_clock::now();

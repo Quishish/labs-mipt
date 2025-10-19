@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 
 void printBinary(unsigned value) {
     auto mask = 1u << 31;
@@ -20,10 +21,15 @@ union FloatUnsigned {
 
 
 int main() {
-    FloatUnsigned fu;
+    std::cout << std::fixed;
+    std::cout.precision(2);
 
-    std::cin >> fu.Unsigned;
-    printBinary(fu.Unsigned);
+    float base = 10.00;
+
+    for (int i = 1;i < 20;i++) {
+        float result = pow(base, i);
+        std::cout << result << " " << i << "\n" << std::endl;
+    }
 
     return 0;
 }

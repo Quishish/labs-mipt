@@ -1,56 +1,34 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.optimize import curve_fit
 
-# Функция для аппроксимации
-def linear_func(x, a):
-    return a * x
+# Данные
+x = [1, 2, 3, 4, 5, 6]
+y1 = [3248, 6488, 9735, 12993, 16213, 19450]
+y2 = [4125, 8247, 12381, 16500, 20633, 24758]
+y3 = [4235, 8456, 12700, 17000, 21180, 25400]
 
-x_data1 = [1, 2, 3, 4, 5, 6]
-x_data2 = [1, 2, 3, 4, 5, 6]
-x_data3 = [1, 2, 3, 4, 5, 6]
-y_data1 = [3.248, 6.488, 9.735, 12.993, 16.213, 19.450]
-y_data2 = [4.125, 8.247, 12.381, 16.500, 20.633, 24.758]
-y_data3 = [4.235, 8.456, 12.700, 17.000, 21.180, 25.400]
+# Создаем линии аппроксимации для каждого набора
+x_fit = np.linspace(min(x), max(x), 100)
 
-# Создание фигуры и оси
-fig, ax = plt.subplots(figsize=(10, 6))
+plt.figure(figsize=(10, 6))
 
-# Цвета для разных наборов данных
-colors = ['red', 'blue', 'green']
-labels = []
-
-# Список для хранения угловых коэффициентов
-slopes = []
-
-# Обработка каждого набора данных
-for i, (x, y) in enumerate(zip([x_data1, x_data2, x_data3], [y_data1, y_data2, y_data3],)):
-    # Аппроксимация данных
-    params, covariance = curve_fit(linear_func, x, y)
-    slope = params[0]  # Угловой коэффициент
-    slopes.append(slope)
+# Для каждого набора данных
+for i, (y, color, marker) in enumerate(zip(
+    [y1, y2, y3], 
+    ['blue', 'green', 'orange'],
+    ['o', 's', '^']
+)):
+    coefficients = np.polyfit(x, y, 1)
+    a = coefficients[0]
+    y_fit = a * x_fit
     
-    x_fit = np.linspace(0, max(x) + 1, 100)
-    y_fit = linear_func(x_fit, *params)
-    
-    # Построение графика с погрешностями по обеим осям
-    ax.errorbar(x, y, fmt='o', color=colors[i], 
-                label=labels[i], capsize=3, capthick=1, elinewidth=1)
-    ax.plot(x_fit, y_fit, color=colors[i], )
+    plt.scatter(x, y, color=color, marker=marker, s=60)
+    plt.plot(x_fit, y_fit, color=color, alpha=0.7,
+             label=f'k{i+1} = {a:.4f}')
 
-# Настройка внешнего вида
-ax.set_xlabel('I амперметра, мА')
-ax.set_ylabel('V вольтметра, мВ')
-
-plt.minorticks_on()
-
-ax.spines['right'].set_visible(False)  # Прячем правую ось
-ax.spines['top'].set_visible(False)  # Прячем верхнюю ось
-
-ax.xaxis.set_ticks_position('bottom')
+plt.xlabel('Номер резонансного пика, N')
+plt.ylabel('Резонансная частота f, Гц')
+plt.legend()
 plt.grid(True, alpha=0.3)
-ax.yaxis.set_ticks_position('left')
-ax.legend()
-
-plt.tight_layout()
+plt.title('Зависимость резонансной частоты стержня от номера пика')
 plt.show()

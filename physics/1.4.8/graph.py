@@ -24,7 +24,7 @@ for i, (y, color, marker) in enumerate(zip(
     a = coefficients[0]
     y_fit = a * x_fit
 
-    labels = [f'Медь: k{i+1} = {a:.2f}', f'Сталь: k{i+1} = {a:.2f}', f'Дюраль: k{i+1} = {a:.2f}']
+    labels = [f'Медь: k{i+1} = {a:.2f} ± 3.42 Гц', f'Сталь: k{i+1} = {a:.2f} ± 5.26 Гц', f'Дюраль: k{i+1} = {a:.2f} ± 7.23 Гц']
     
     plt.scatter(x, y, color=color, marker=marker, s=60)
     plt.plot(x_fit, y_fit, color=color, alpha=0.7,

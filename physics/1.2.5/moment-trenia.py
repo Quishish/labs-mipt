@@ -7,7 +7,7 @@ a = [0.00032, 0.00031, 0.00036, 0.00040]
 ress = []
 
 for i in range(4):
-    mt = (m[i] * 9.8 * 0.121 * a[i]) / (2 * math.pi * n[i])
+    mt = ((m[i] * 9.8 * 0.121 * a[i]) / (2 * math.pi * n[i])) * 1000
     ress.append(mt)
 
 print(ress)

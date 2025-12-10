@@ -22,8 +22,8 @@ union FloatUnsigned {
 int main() {
     FloatUnsigned fu;
 
-    std::cin >> fu.Unsigned;
-    printBinary(fu.Unsigned);
+    std::cin >> fu.Float;
+    printBinary(fu.Float);
 
     return 0;
 }

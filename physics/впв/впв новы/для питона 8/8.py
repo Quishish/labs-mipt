@@ -58,7 +58,7 @@ T_T0_theoretical = normalized_period(radians)
 
 # Построение теоретической кривой
 plt.plot(degrees, T_T0_theoretical, 
-         'b-', linewidth=0.5, label='Теоретическая кривая (без трения)')
+         'b-', linewidth=0.5, label='Теоретическая кривая ')
 scat('ELP_005', 294, 0.005215511288, 1.330762391729)
 scat('ELP_010', 294, 0.005817129952, 1.484268241483)
 scat('ELP_015', 294, 0.005236084900, 1.336011846190)
@@ -67,19 +67,21 @@ scat('ELP_025', 294, 0.005388244342, 1.374836048041)
 
 
 # Настройка графика
-plt.xlabel('Амплитуда колебаний φ, градусы', fontsize=14)
-plt.ylabel('Нормированный период T/T₀', fontsize=14)
-plt.title('Теоретическая зависимость периода от амплитуды\nдля нелинейного маятника (без трения)', 
-          fontsize=16, pad=20)
+plt.xlabel('Амплитуда колебаний φ, градусы', fontsize=20)
+plt.ylabel('Нормированный период T/T₀', fontsize=20)
+plt.tick_params(axis='both', which='major', labelsize=14)
+plt.tick_params(axis='both', which='minor', labelsize=12)
+plt.title('Теоретическая зависимость периода от амплитуды\nдля нелинейного маятника', 
+          fontsize=30, pad=20)
 plt.grid(True, alpha=0.3)
-plt.legend(loc='upper left')
+plt.legend(loc='upper left', fontsize=14)
 plt.xlim(0, 180)
-plt.ylim(0.9, 5)  # При φ→180 период стремится к бесконечности
+plt.ylim(0.9, 3.5)  # При φ→180 период стремится к бесконечности
 
 # Добавление второй горизонтальной оси с радианами
 ax_rad = plt.gca().twiny()
 ax_rad.set_xlim(0, np.pi)
-ax_rad.set_xlabel('Амплитуда колебаний φ, радианы', fontsize=12)
+ax_rad.set_xlabel('Амплитуда колебаний φ, радианы', fontsize=20)
 ax_rad.set_xticks([0, np.pi/6, np.pi/3, np.pi/2, 2*np.pi/3, 5*np.pi/6, np.pi])
 ax_rad.set_xticklabels(['0', 'π/6', 'π/3', 'π/2', '2π/3', '5π/6', 'π'])
 
